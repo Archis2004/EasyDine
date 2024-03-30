@@ -307,34 +307,35 @@ def get_bf_menu():
         "beverages_menu": bev_items
     }
 
-@app.post('/order')
-def order(order: Order):
+@app.post('/order/breakfast')
+def bf_order(order: Order):
     global t_id
 
     regno = order.regno
     items = order.items
     rates = {}
+    bf_menu = db.collection("Menu").document("Breakfast").collections()
 
-    price = calc_price(regno, items, rates)
+    price = calc_price(regno, items, rates, bf_menu)
 
     return {"Price ": price}
 
 
-def calc_price(regno, items, rates):
+def calc_price(regno, items, rates, menu):
+    global t_id
     try:
         member = db.collection("Members").document(regno)
-        menu = db.collection("Menu").stream()
 
-        for doc in menu:
-            item_coll = doc.reference.collections()
-            for collection in item_coll:
-                item_all = collection.stream()
-                for item in item_all:
-                    item_data = item.to_dict()
-                    rates[item_data['name']] = item_data['rate']
+        for collection in menu:
+            item_all = collection.stream()
+            for item in item_all:
+                item_data = item.to_dict()
+                rates[item_data['name']] = item_data['rate']
 
-        trans_data = {"items":{}, "price":0}
-    
+        trans_data = {"items":{}, "price":0, "time":None}
+
+        price = 0
+
         for item in items:
             name = item.name
             quantity = item.quantity
@@ -346,7 +347,7 @@ def calc_price(regno, items, rates):
     
         trans_data['price'] = price
         trans_data['time'] = firestore.SERVER_TIMESTAMP
-        trans = member.collection('Transactions').document(t_id)
+        trans = member.collection('Transactions').document(str(t_id))
         t_id += 1
         trans.set(trans_data)
 

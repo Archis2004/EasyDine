@@ -573,7 +573,6 @@ def din_order(order: Order):
 def calc_price(regno, items, rates, menu):
     global t_id
     try:
-        member = db.collection("Members").document(regno)
 
         for collection in menu:
             item_all = collection.stream()
@@ -596,12 +595,19 @@ def calc_price(regno, items, rates, menu):
     
         trans_data['price'] = price
         trans_data['time'] = firestore.SERVER_TIMESTAMP
-        trans = member.collection('Transactions').document()
-        t_id += 1
-        trans.set(trans_data)
 
-        member.update({"credits": firestore.Increment(-price)})
+        member = db.collection("Members").document(regno)
 
+        if member.get().exists:
+            trans = member.collection('Transactions').document()
+            trans.set(trans_data)
+            member.update({"credits": firestore.Increment(-price)})
+
+        else:
+            non_member = db.collection("Non-Members")
+            reg = non_member.document(regno)
+            trans = reg.collection('Transactions').document()
+            trans.set(trans_data)
         return price
     
     except Exception as e:

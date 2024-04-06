@@ -269,6 +269,199 @@ for item in breakfast_bev_menu:
         if not query:
             doc.set(item)
 
+veg_menu = [{
+    'name' : 'Veg Meals',
+    'quantity' : '1 Plate',
+    'rate' : 55,
+},
+{
+    'name' : 'Plain Naan',
+    'quantity' : '1 Pc',
+    'rate' : 17,
+},
+{
+    'name' : 'Butter Naan',
+    'quantity' : '1 Pc',
+    'rate' : 23,
+},
+{
+    'name' : 'Phulka',
+    'quantity' : '1 Pc',
+    'rate' : 16,
+},
+{
+    'name' : 'Veg Fried Rice',
+    'quantity' : '1 Plate',
+    'rate' : 55,
+},
+{
+    'name': 'Paneer Fried Rice',
+    'quantity': '1 Plate',
+    'rate': 65,
+},
+{
+    'name': 'Curd',
+    'quantity': '1 Cup',
+    'rate': 12,
+},
+{
+    'name': 'Palak Paneer',
+    'quantity': '1 Plate',
+    'rate': 60,
+},
+{
+    'name': 'Paneer Butter Masala',
+    'quantity': '1 Plate',
+    'rate': 65,
+},
+{
+    'name': 'Paneer Chatpata',
+    'quantity': '1 Plate',
+    'rate': 72,
+},
+{
+    'name': 'Plain Dal',
+    'quantity': '1 Plate',
+    'rate': 52,
+},
+{
+    'name': 'Aloo Jeera',
+    'quantity': '1 Plate',
+    'rate': 50,
+},
+{
+    'name': 'Veg Biryani',
+    'quantity': '1 Plate',
+    'rate': 58,
+},
+]
+
+for item in veg_menu:
+    doc = db.collection("Menu").document("Lunch").collection("Veg").document(item.get('name'))
+    name = item.get('name')
+    if name: 
+        query = db.collection("Menu").where("name", "==", name).limit(1).get()
+        if not query:
+            doc.set(item)
+
+for item in veg_menu:
+    doc = db.collection("Menu").document("Dinner").collection("Veg").document(item.get('name'))
+    name = item.get('name')
+    if name: 
+        query = db.collection("Menu").where("name", "==", name).limit(1).get()
+        if not query:
+            doc.set(item)
+
+nv_menu = [{
+    'name' : 'Chicken Biryani',
+    'quantity' : '1 Plate',
+    'rate' : 100,
+},
+{
+    'name' : 'Chicken Fried Rice',
+    'quantity' : '1 Plate',
+    'rate' : 80,
+},
+{
+    'name' : 'Chicken 65',
+    'quantity' : '1 Plate',
+    'rate' : 90,
+},
+{
+    'name' : 'Chicken Hyderabadi',
+    'quantity' : '1 Plate',
+    'rate' : 90,
+},
+{
+    'name' : 'Malai Chicken',
+    'quantity' : '1 Plate',
+    'rate' : 90,
+},
+{
+    'name' : 'Egg Biryani',
+    'quantity' : '1 Plate',
+    'rate' : 80,
+},
+{
+    'name' : 'Egg Fried Rice',
+    'quantity' : '1 Plate',
+    'rate' : 60,
+},
+{
+    'name' : 'Fish Fry',
+    'quantity' : '1 Plate',
+    'rate' : 90,
+},
+{
+    'name' : 'Egg Masala',
+    'quantity' : '1 Plate',
+    'rate' : 60,
+},
+]
+
+for item in nv_menu:
+    doc = db.collection("Menu").document("Lunch").collection("Non Veg").document(item.get('name'))
+    name = item.get('name')
+    if name: 
+        query = db.collection("Menu").where("name", "==", name).limit(1).get()
+        if not query:
+            doc.set(item)
+
+for item in nv_menu:
+    doc = db.collection("Menu").document("Dinner").collection("Non Veg").document(item.get('name'))
+    name = item.get('name')
+    if name: 
+        query = db.collection("Menu").where("name", "==", name).limit(1).get()
+        if not query:
+            doc.set(item)
+
+dessert_menu = [{
+    'name' : 'Gulab Jamun',
+    'quantity' : '2 Pcs',
+    'rate' : 21,
+},
+{
+    'name' : 'Jalebi',
+    'quantity' : '2 Pcs',
+    'rate' : 21,
+},
+{
+    'name' : 'Chocolate Ice Cream with Dates',
+    'quantity' : '1 Cup',
+    'rate' : 50,
+},
+{
+    'name' : 'Vanilla Ice Cream with Chocolate Syrup',
+    'quantity' : '1 Cup',
+    'rate' : 50,
+},
+{
+    'name' : 'Strawberry Ice Cream',
+    'quantity' : '1 Cup',
+    'rate' : 50,
+},
+{
+    'name' : 'Mango Ice Cream with Gulab Jamun',
+    'quantity' : '1 Cup',
+    'rate' : 50,
+},
+]
+
+for item in dessert_menu:
+    doc = db.collection("Menu").document("Lunch").collection("Dessert").document(item.get('name'))
+    name = item.get('name')
+    if name: 
+        query = db.collection("Menu").where("name", "==", name).limit(1).get()
+        if not query:
+            doc.set(item)
+
+for item in dessert_menu:
+    doc = db.collection("Menu").document("Dinner").collection("Dessert").document(item.get('name'))
+    name = item.get('name')
+    if name: 
+        query = db.collection("Menu").where("name", "==", name).limit(1).get()
+        if not query:
+            doc.set(item)
 
 class OrderItem(BaseModel):
     name: str
@@ -285,10 +478,7 @@ class Transaction(BaseModel):
     regno: str
     amount: int
 
-t_id = 1
-
 app = FastAPI()
-
 
 @app.get('/menu/breakfast')
 def get_bf_menu():
@@ -307,6 +497,40 @@ def get_bf_menu():
         "beverages_menu": bev_items
     }
 
+@app.get('/menu/lunch')
+def get_lu_menu():
+    menu = db.collection("Menu").document("Lunch")
+    lunch_veg_menu = menu.collection("Veg").stream()
+    lunch_nv_menu = menu.collection("Non Veg").stream()
+    dessert_menu = menu.collection("Dessert").stream()
+    
+    veg_items = [docu.to_dict() for docu in lunch_veg_menu]
+    nv_items = [docu.to_dict() for docu in lunch_nv_menu]
+    dessert_items = [docu.to_dict() for docu in dessert_menu]
+    
+    return {
+        "veg_menu": veg_items,
+        "non_veg_menu": nv_items,
+        "dessert_menu": dessert_items
+    }
+
+@app.get('/menu/dinner')
+def get_din_menu():
+    menu = db.collection("Menu").document("Dinner")
+    dinner_veg_menu = menu.collection("Veg").stream()
+    dinner_nv_menu = menu.collection("Non Veg").stream()
+    dessert_menu = menu.collection("Dessert").stream()
+    
+    veg_items = [docu.to_dict() for docu in dinner_veg_menu]
+    nv_items = [docu.to_dict() for docu in dinner_nv_menu]
+    dessert_items = [docu.to_dict() for docu in dessert_menu]
+    
+    return {
+        "veg_menu": veg_items,
+        "non_veg_menu": nv_items,
+        "dessert_menu": dessert_items
+    }
+
 @app.post('/order/breakfast')
 def bf_order(order: Order):
     global t_id
@@ -320,6 +544,31 @@ def bf_order(order: Order):
 
     return {"Price ": price}
 
+@app.post('/order/lunch')
+def lu_order(order: Order):
+    global t_id
+
+    regno = order.regno
+    items = order.items
+    rates = {}
+    lu_menu = db.collection("Menu").document("Lunch").collections()
+
+    price = calc_price(regno, items, rates, lu_menu)
+
+    return {"Price ": price}
+
+@app.post('/order/dinner')
+def din_order(order: Order):
+    global t_id
+
+    regno = order.regno
+    items = order.items
+    rates = {}
+    lu_menu = db.collection("Menu").document("Dinner").collections()
+
+    price = calc_price(regno, items, rates, lu_menu)
+
+    return {"Price ": price}
 
 def calc_price(regno, items, rates, menu):
     global t_id
@@ -347,7 +596,7 @@ def calc_price(regno, items, rates, menu):
     
         trans_data['price'] = price
         trans_data['time'] = firestore.SERVER_TIMESTAMP
-        trans = member.collection('Transactions').document(str(t_id))
+        trans = member.collection('Transactions').document()
         t_id += 1
         trans.set(trans_data)
 

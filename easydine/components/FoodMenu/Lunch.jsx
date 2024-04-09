@@ -1,21 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native';
 import SelectType from './SelectType';
 import Card from './Card';
 import FetchLV from '../../src/Lunch/FetchLV';
 import FetchLNV from '../../src/Lunch/FetchLNV';
 import FetchLD from '../../src/Lunch/FetchLD';
 
-export default function Lunch() {
-  const DATA = FetchLD();
-  console.log(DATA);
+export default function Lunch (){
+    const LD = FetchLD();
+    const LV = FetchLV();
+    const LNV = FetchLNV();
+    const Data = LV.concat(LNV, LD);
     return (
-        <View style={styles.container}>
-          
-          {/* <SelectType/> */}
-          {/* <FlatList 
-          /> */}
+        <View style={styles.container}> 
+            <SelectType/>
+            <View>
+            <FlatList
+                data={Data}
+                renderItem = {({ item }) => (
+                    <Pressable
+                        style={styles.container}
+                    >
+                        <Card name={item.name} rate={item.rate} image={item.image} />
+                    </Pressable>
+                )}
+            />
+            </View>
         </View>
+        
       );
 };
 

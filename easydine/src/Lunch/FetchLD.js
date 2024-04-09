@@ -16,12 +16,13 @@ const FetchLD = () => {
                 querySnapshot => {
                     const items = []
                     querySnapshot.forEach((doc) => { 
-                        const { name, quantity, rate } = doc.data()
+                        const { name, quantity, rate, image } = doc.data()
                         items.push({
                             id: doc.id,
                             name,
                             quantity,
                             rate,
+                            image,
                         })
                     })
                     setItems(items)

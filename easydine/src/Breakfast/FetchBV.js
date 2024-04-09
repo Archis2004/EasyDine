@@ -4,7 +4,7 @@ import { firebase } from '../../config';
 
 const FetchBV = () => { 
 
-    const [users, setItems] = useState([]);
+    const [items, setItems] = useState([]);
     const menuRef = firebase.firestore().collection('Menu');
     const breakfastRef = menuRef.doc('Breakfast');
     const vegBfRef = breakfastRef.collection('Veg');
@@ -16,12 +16,13 @@ const FetchBV = () => {
                 querySnapshot => {
                     const items = []
                     querySnapshot.forEach((doc) => { 
-                        const { name, quantity, rate } = doc.data()
+                        const { name, quantity, rate, image } = doc.data()
                         items.push({
                             id: doc.id,
                             name,
                             quantity,
                             rate,
+                            image,
                         })
                     })
                     setItems(items)
@@ -31,26 +32,7 @@ const FetchBV = () => {
         fetchData();
     }, [])
 
-    return (
-        <View style={{ flex: 1, marginTop: 100 }}>
-            <FlatList
-                style={{ height: '100%' }}
-                data={users}
-                numColumns={1}
-                renderItem = {({ item }) => (
-                    <Pressable
-                        style={styles.container}
-                    >
-                        <View style={styles.innerContainer}>
-                            <Text style={styles.innerName}>{item.name}</Text>
-                            <Text style={styles.innerQty}>{item.quantity}</Text>
-                            <Text style={styles.innerRate}>{item.rate}</Text>
-                        </View>
-                    </Pressable>
-                )}
-            />
-        </View>
-    )
+    return (items)
 }
 
 export default FetchBV

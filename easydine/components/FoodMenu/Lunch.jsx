@@ -13,6 +13,7 @@ export default function Lunch (){
           {/* <FetchLV />
           <FetchLNV /> */}
           {/* <FetchLD /> */}
+          <card
           {/* <SelectType/> */}
           <FlatList
                 data={DATA}

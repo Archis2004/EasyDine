@@ -1,10 +1,10 @@
 import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { firebase } from '../../config';
-
+import Card from '../../components/FoodMenu/Card';
 const FetchLD = () => { 
 
-    const [users, setItems] = useState([]);
+    const [items, setItems] = useState([]);
     const menuRef = firebase.firestore().collection('Menu');
     const lunchRef = menuRef.doc('Lunch');
     const DesLunRef = lunchRef.collection('Dessert');
@@ -31,26 +31,7 @@ const FetchLD = () => {
         fetchData();
     }, [])
 
-    return (
-        <View style={{ flex: 1, marginTop: 100 }}>
-            <FlatList
-                style={{ height: '100%' }}
-                data={users}
-                numColumns={1}
-                renderItem = {({ item }) => (
-                    <Pressable
-                        style={styles.container}
-                    >
-                        <View style={styles.innerContainer}>
-                            <Text style={styles.innerName}>{item.name}</Text>
-                            <Text style={styles.innerQty}>{item.quantity}</Text>
-                            <Text style={styles.innerRate}>{item.rate}</Text>
-                        </View>
-                    </Pressable>
-                )}
-            />
-        </View>
-    )
+    return (items)
 }
 
 export default FetchLD

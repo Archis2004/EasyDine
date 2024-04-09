@@ -3,6 +3,7 @@ Food Park Easydine App for SolveAThon
 
 Use the following commands to run the app server:
 ```
+npm i
 cd easydine
 expo start
 ```

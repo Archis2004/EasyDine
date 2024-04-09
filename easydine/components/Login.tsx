@@ -71,5 +71,21 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         padding: 10,
         backgroundColor: '#fff'
+    },
+    login: {
+        marginVertical: 4,
+        height: 50,
+        borderWidth: 1,
+        borderRadius: 4,
+        padding: 10,
+        backgroundColor: '#fff'
+    },
+    create: {
+        marginVertical: 4,
+        height: 50,
+        borderWidth: 1,
+        borderRadius: 4,
+        padding: 10,
+        backgroundColor: '#fff'
     }
 });

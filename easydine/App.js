@@ -1,15 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 import Navbar from "./components/Navbar";
+import Test from "./components/Test";
+import FoodMenu from './components/FoodMenu/FoodMenu';
 
 export default function App() {
   return (
-    
-    <View style={styles.container}>
-      <Navbar/>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+         <NavigationContainer>
+          <Navbar/>
+          <FoodMenu/>
+         </NavigationContainer>
   );
 }
 

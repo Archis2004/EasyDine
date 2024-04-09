@@ -7,18 +7,22 @@ import Profile from './Profile';
 import Credits from './Credits';
 import Orders from './Orders';
 import Settings from './Settings';
+import ViewCart from './ViewCart';
 const Drawer = createDrawerNavigator();
 
 export default function Navbar() {
+
   return (
       
       <Drawer.Navigator name="EasyDine" options={{ drawerLabel: 'Custom Name' }}>
       <Drawer.Screen name="Menu" component={FoodMenu}/>
       <Drawer.Screen name="Profile" component={Profile}/>
       <Drawer.Screen name="Credits" component={Credits}/>
-      <Drawer.Screen name="Past Orders" component={Orders}/>
-      <Drawer.Screen name="Settings" component={Settings}/>
+      <Drawer.Screen name="Past Orders" component={Orders} />
+      <Drawer.Screen name="View Cart" component={ViewCart}/>
+      <Drawer.Screen name="Settings" component={Settings} />
       </Drawer.Navigator>
+      
   );
 }
 

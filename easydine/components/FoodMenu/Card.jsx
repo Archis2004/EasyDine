@@ -3,8 +3,6 @@ import { FlatList, StyleSheet, Text, View, Image } from 'react-native';
 import React from 'react';
 import { Button } from 'react-native';
 export default function Card() {
-    let data=[1,2,3,4,5,6]
-
     return (
       <View style={styles.container}>
         <View style={styles.info}>

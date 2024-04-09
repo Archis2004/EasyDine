@@ -8,7 +8,7 @@ export default function Card(props) {
         <View style={styles.info}>
             <Text>{props.name}</Text>
             <Text>Rate: {props.rate}</Text>
-            <View style = {styles.add}><Button title="add">Add</Button></View>
+            <View style = {styles.add}><Button title="add" onPress={()=>props.addItem({name:props.name,rate:props.rate, image:props.image})}>Add</Button></View>
         </View>
         <Image 
         style={styles.image}
@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: 'center',
         marginTop: 10,
+        borderRadius: 10,
     },
     image:{
         width:"40%", 
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
     },
     add:{
       width:100,
-      backgroundColor:"blue"
+      backgroundColor:"blue",
+      borderRadius: 10
     }
 })

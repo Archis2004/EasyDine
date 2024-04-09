@@ -2,18 +2,18 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import {NavigationContainer} from '@react-navigation/native';
-import VegMenu from './VegMenu';
-import NonvegMenu from './NonvegMenu';
-import SpecialMenu from './SpecialMenu';
+import Dinner from './Dinner';
+import Breakfast from './Breakfast';
+import Lunch from './Lunch';
 const Tab = createMaterialTopTabNavigator();
 
 export default function FoodMenu (){
     return (
-
+      
         <Tab.Navigator>
-          <Tab.Screen name="veg" component={VegMenu} />
-          <Tab.Screen name="nonveg" component={NonvegMenu} />
-          <Tab.Screen name="special" component={SpecialMenu} />
+          <Tab.Screen name="Breakfast" component={Breakfast} />
+          <Tab.Screen name="Lunch" component={Lunch} />
+          <Tab.Screen name="Dinner" component={Dinner} />
         </Tab.Navigator>
 
       );

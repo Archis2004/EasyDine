@@ -2,17 +2,23 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Entypo } from '@expo/vector-icons';
+import FoodMenu from './FoodMenu/FoodMenu';
+import Profile from './Profile';
+import Credits from './Credits';
+import Orders from './Orders';
+import Settings from './Settings';
+const Drawer = createDrawerNavigator();
 
 export default function Navbar() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>
-        EasyDine
-      <Entypo style={styles.menuicon} name="menu" size={24} color="white" />
-      </Text>
       
-      <StatusBar style="auto" />
-    </View>
+      <Drawer.Navigator name="EasyDine" options={{ drawerLabel: 'Custom Name' }}>
+      <Drawer.Screen name="Menu" component={FoodMenu}/>
+      <Drawer.Screen name="Profile" component={Profile}/>
+      <Drawer.Screen name="Credits" component={Credits}/>
+      <Drawer.Screen name="Past Orders" component={Orders}/>
+      <Drawer.Screen name="Settings" component={Settings}/>
+      </Drawer.Navigator>
   );
 }
 

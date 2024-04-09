@@ -1,5 +1,5 @@
 # EasyDine
-Food Park Easydine App
+Food Park Easydine App for SolveAThon
 
 Use the following commands to run the app server:
 ```

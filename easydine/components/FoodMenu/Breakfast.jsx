@@ -1,12 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import SelectType from './SelectType';
-import Fetch from './src/Fetch';
+import FetchBV from '../../src/Breakfast/FetchBV';
+import FetchBB from '../../src/Breakfast/FetchBB';
+import FetchBNV from '../../src/Breakfast/FetchBNV';
 
 export default function Breakfast (){
     return (
         <View style={styles.container}>
-          <Fetch/>
+          <FetchBV />
+          <FetchBB />
+          <FetchBNV />
+          {/* <SelectType/> */}
+          {/* <FlatList 
+          /> */}
         </View>
       );
 };

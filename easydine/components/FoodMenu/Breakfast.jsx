@@ -13,7 +13,7 @@ export default function Breakfast (){
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:'red',
+        backgroundColor:'#E0E0E0',
         flex:1,
     }
 })

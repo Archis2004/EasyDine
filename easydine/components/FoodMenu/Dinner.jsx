@@ -1,11 +1,12 @@
 
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import SelectType from './SelectType';
 
-
-export default function VegMenu (){
+export default function Dinner (){
     return (
         <View style={styles.container}>
+          {/* <SelectType/> */}
           {/* <FlatList 
           /> */}
         </View>
@@ -14,7 +15,7 @@ export default function VegMenu (){
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:'green',
+        backgroundColor:'#E0E0E0',
         flex:1,
     }
 })

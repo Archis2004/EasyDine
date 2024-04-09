@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
     container:{
         padding: 0,
         flexDirection:'row',
-        // height: '150%',
         width: '100%', 
         overflow: "hidden",
         backgroundColor: "white",
@@ -40,7 +39,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     info:{
-        marginLeft: 20,
+      marginLeft: 20,
+      marginTop: 10,
+      marginBottom: 10,
     },
     add:{
       width:100,

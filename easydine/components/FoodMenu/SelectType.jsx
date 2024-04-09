@@ -52,7 +52,8 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     borderRadius: 10,
-    margin: 10,
+    marginHorizontal: 5,
+    marginTop: 10,
   },
   selected:{
     borderBlockColor:"black"

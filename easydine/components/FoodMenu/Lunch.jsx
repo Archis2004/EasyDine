@@ -7,30 +7,27 @@ import FetchLNV from '../../src/Lunch/FetchLNV';
 import FetchLD from '../../src/Lunch/FetchLD';
 
 export default function Lunch (){
-  const DATA=FetchLD();
+    const LD = FetchLD();
+    const LV = FetchLV();
+    const LNV = FetchLNV();
+    const Data = LV.concat(LNV, LD);
     return (
-        <View style={styles.container}>
-          {/* <FetchLV />
-          <FetchLNV /> */}
-          {/* <FetchLD /> */}
-          <card
-          {/* <SelectType/> */}
-          <FlatList
-                data={DATA}
+        <View style={styles.container}> 
+            <SelectType/>
+            <View>
+            <FlatList
+                data={Data}
                 renderItem = {({ item }) => (
                     <Pressable
                         style={styles.container}
                     >
-                        {/* <View style={styles.innerContainer}>
-                            <Text style={styles.innerName}>{item.name}</Text>
-                            <Text style={styles.innerQty}>{item.quantity}</Text>
-                            <Text style={styles.innerRate}>{item.rate}</Text>
-                        </View> */}
-                        <Card name={item.name} rate={item.rate}/>
+                        <Card name={item.name} rate={item.rate} image={item.image} />
                     </Pressable>
                 )}
             />
+            </View>
         </View>
+        
       );
 };
 

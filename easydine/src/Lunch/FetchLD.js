@@ -1,7 +1,7 @@
 import { View, Text, FlatList, StyleSheet, Pressable } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { firebase } from '../../config';
-
+import Card from '../../components/FoodMenu/Card';
 const FetchLD = () => { 
 
     const [items, setItems] = useState([]);

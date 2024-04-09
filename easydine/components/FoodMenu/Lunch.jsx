@@ -6,13 +6,12 @@ import FetchLV from '../../src/Lunch/FetchLV';
 import FetchLNV from '../../src/Lunch/FetchLNV';
 import FetchLD from '../../src/Lunch/FetchLD';
 
-export default function Lunch (){
+export default function Lunch() {
+  const DATA = FetchLD();
+  console.log(DATA);
     return (
         <View style={styles.container}>
-          <Card/>
-          <FetchLV />
-          <FetchLNV />
-          <FetchLD />
+          
           {/* <SelectType/> */}
           {/* <FlatList 
           /> */}

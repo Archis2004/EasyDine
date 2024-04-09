@@ -4,7 +4,7 @@ import { firebase } from '../../config';
 
 const FetchBNV = () => { 
 
-    const [users, setItems] = useState([]);
+    const [items, setItems] = useState([]);
     const menuRef = firebase.firestore().collection('Menu');
     const breakfastRef = menuRef.doc('Breakfast');
     const NvegBfRef = breakfastRef.collection('Non-Veg');
@@ -31,26 +31,7 @@ const FetchBNV = () => {
         fetchData();
     }, [])
 
-    return (
-        <View style={{ flex: 1, marginTop: 100 }}>
-            <FlatList
-                style={{ height: '100%' }}
-                data={users}
-                numColumns={1}
-                renderItem = {({ item }) => (
-                    <Pressable
-                        style={styles.container}
-                    >
-                        <View style={styles.innerContainer}>
-                            <Text style={styles.innerName}>{item.name}</Text>
-                            <Text style={styles.innerQty}>{item.quantity}</Text>
-                            <Text style={styles.innerRate}>{item.rate}</Text>
-                        </View>
-                    </Pressable>
-                )}
-            />
-        </View>
-    )
+    return (items)
 }
 
 export default FetchBNV

@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import SelectType from './SelectType';
 
-
-export default function SpecialMenu (){
+export default function Breakfast (){
     return (
         <View style={styles.container}>
+          <SelectType/>
           {/* <FlatList 
           /> */}
         </View>
@@ -13,7 +14,7 @@ export default function SpecialMenu (){
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:'yellow',
+        backgroundColor:'red',
         flex:1,
     }
 })

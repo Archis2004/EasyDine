@@ -2,7 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
 
-export default function NonvegMenu (){
+export default function Lunch (){
     return (
         <View style={styles.container}>
           {/* <FlatList 
@@ -13,7 +13,7 @@ export default function NonvegMenu (){
 
 const styles = StyleSheet.create({
     container:{
-        backgroundColor:'red',
+        backgroundColor:'yellow',
         flex:1,
     }
 })

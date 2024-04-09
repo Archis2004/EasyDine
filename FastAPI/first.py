@@ -523,8 +523,48 @@ for item in dessert_menu:
         if not query:
             doc.set(item)
 
+tc_menu = [{
+    'name' : 'Chicken Biryani',
+    'quantity' : '1 Plate',
+    'rate' : 100,
+    'image' : 'https://imgs.search.brave.com/ePOgnZWfANHQ43fAOXnaP37uFhCMejk41hLtU7tGoLg/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTA1/ODAyOTA5Ni9waG90/by9jaGlja2VuLWJp/cnlhbmkuanBnP3M9/NjEyeDYxMiZ3PTAm/az0yMCZjPXlWVjFS/QXJrWXoxZlhmMEJs/cGV1d3h0MHlUSEhE/bmxPVVJWTUptWWdB/ZUk9'
+},
+{
+    'name' : 'Chocolate Ice Cream with Dates',
+    'quantity' : '1 Cup',
+    'rate' : 50,
+    'image' : 'https://imgs.search.brave.com/hFoxYXqEXHt0O600klcLnRfPCJHInfdGVIX6GfX0_jk/rs:fit:500:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAxLzQ3LzYxLzg2/LzM2MF9GXzE0NzYx/ODY3Nl9FV09WQUlK/NFN3bUhtOGlTR01o/QzM4OVNFSkwyVGho/WC5qcGc'
+},
+{
+    'name': 'Paneer Chatpata',
+    'quantity': '1 Plate',
+    'rate': 72,
+    'image' : 'https://imgs.search.brave.com/qeiS3akFisJYL0NYt506aedcPKx8nF50DlC146dOgE8/rs:fit:500:0:0/g:ce/aHR0cDovL3d3dy5y/ZWxpc2h0aGViaXRl/LmNvbS93cC1jb250/ZW50L3VwbG9hZHMv/MjAyMC8wNi80MTQ0/NkRFNi1DNjZBLTQ0/NDMtQTMxQy1FM0Qw/NzhCMkVCNTguanBn'
+},
+{
+    'name' : 'Chicken Hyderabadi',
+    'quantity' : '1 Plate',
+    'rate' : 90,
+    'image' : 'https://imgs.search.brave.com/jY9ROzqckV4HR73bgOYfLx39jbbh0T1fe23J3AxKTMU/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pbWct/Z2xvYmFsLmNwY2Ru/LmNvbS9yZWNpcGVz/L2NkZTBmNWQ1MmEy/MzM2OGUvNjgweDQ4/MmNxNzAvaHlkZXJh/YmFkaS1jaGlja2Vu/LW1hc2FsYS1yZWNp/cGUtbWFpbi1waG90/by5qcGc'
+},
+]
 
+for item in tc_menu:
+    doc = db.collection("Menu").document("Lunch").collection("Today's Choices").document(item.get('name'))
+    name = item.get('name')
+    if name: 
+        query = db.collection("Menu").where("name", "==", name).limit(1).get()
+        if not query:
+            doc.set(item)
 
+for item in tc_menu:
+    doc = db.collection("Menu").document("Dinner").collection("Today's Choices").document(item.get('name'))
+    name = item.get('name')
+    if name: 
+        query = db.collection("Menu").where("name", "==", name).limit(1).get()
+        if not query:
+            doc.set(item)
+            
 class OrderItem(BaseModel):
     name: str
     quantity: int

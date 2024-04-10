@@ -7,6 +7,14 @@ function App() {
   const [pendingList, setPendingList] = useState([]);
   const [preparingList, setPreparingList] = useState([]);
 
+  function handlePending(item){
+    let temp = preparingList;
+    temp.push(item);
+    setPreparingList(temp);
+  }
+  function handlePreparing(id){
+    
+  }
   return (
     <div className="App">
       <div id="navbar">
@@ -14,8 +22,18 @@ function App() {
       </div>
       <div class="container">
       <div id="pending">
+      {pendingList.map((instance)=>{
+                return(
+                    <PendingCard onFinished={handlePending} item={instance.items}/>
+                )
+            })}
       </div>
       <div id="preparing">
+      {preparingList.map((instance)=>{
+                return(
+                    <PreparingCard onFinished={handlePreparing} item={instance.items}/>
+                )
+            })}
       </div>
 
       </div>

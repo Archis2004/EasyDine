@@ -3,8 +3,10 @@ import { FlatList, StyleSheet, Text, View, Button } from 'react-native';
 import React, { useState, useEffect } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { FIREBASE_AUTH } from '../config';
+import { firebase } from '../config';
 
 export default function Profile() {
+
   const [user, setUser] = useState(null);
   
   useEffect(() => {

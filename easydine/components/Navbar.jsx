@@ -8,6 +8,7 @@ import Credits from './Credits';
 import Orders from './Orders';
 import Settings from './Settings';
 import ViewCart from './ViewCart';
+import Checkout from './Checkout';
 const Drawer = createDrawerNavigator();
 
 export default function Navbar() {
@@ -18,9 +19,10 @@ export default function Navbar() {
       <Drawer.Screen name="Menu" component={FoodMenu}/>
       <Drawer.Screen name="Profile" component={Profile}/>
       <Drawer.Screen name="Credits" component={Credits}/>
-      <Drawer.Screen name="Past Orders" component={Orders} />
-      <Drawer.Screen name="View Cart" component={ViewCart} />
+      {/* <Drawer.Screen name="Past Orders" component={Orders} /> */}
       <Drawer.Screen name="Settings" component={Settings} />
+      <Drawer.Screen name="Checkout" component={Checkout} options={{ drawerLabel: () => { null } }} />
+      <Drawer.Screen name="View Cart" component={ViewCart} options={{drawerLabel:()=>{null}}} />
       </Drawer.Navigator>
       
   );

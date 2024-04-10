@@ -9,7 +9,7 @@ import Login from './components/Login'
 import { createContext, useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { FIREBASE_AUTH } from './config';
-
+import { StripeProvider } from '@stripe/stripe-react-native';
 
 const UserContext = createContext();
 
@@ -34,11 +34,14 @@ export default function App() {
     });
   }, []);
   return (
+    <StripeProvider publishableKey="pk_test_51P3t9zSGLhh0I8kTcRRh0I5K1q5F9xcUb4ddSVi5y9P4kHD3mpbIiqHtK0LmFQEjl2yElptUniTCCRnjh3Cavi4Z00aRHQ93Ro">
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Login'>
          {user ? (<Stack.Screen name='Inside' component={ InsideLayout } options={{headerShown: false}}/>) : (<Stack.Screen name='Login' component={ Login } options={{headerShown: false}}/>)}
         </Stack.Navigator>
       </NavigationContainer>
+    </StripeProvider>
+      
   );
 }
 

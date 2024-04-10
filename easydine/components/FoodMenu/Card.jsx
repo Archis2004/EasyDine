@@ -1,14 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import { FlatList, StyleSheet, Text, View, Image } from 'react-native';
+import { FlatList, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { Button } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 export default function Card(props) {
     return (
       <View style={styles.container}>
         <View style={styles.info}>
             <Text>{props.name}</Text>
             <Text>Rate: {props.rate}</Text>
-            <View style = {styles.add}><Button title="add" onPress={()=>props.addItem({name:props.name,rate:props.rate, image:props.image})}>Add</Button></View>
+            <View style = {styles.add}>
+            <TouchableOpacity title="add" onPress={()=>props.removeItem({name:props.name})}>
+              <Entypo name="minus" size={24} color="white" />
+              </TouchableOpacity>
+              <TouchableOpacity title="add" onPress={()=>props.addItem({name:props.name,rate:props.rate})}>
+                <Entypo name="plus" size={24} color="white" />
+              </TouchableOpacity>
+              
+            </View>
         </View>
         <Image 
         style={styles.image}
@@ -46,7 +54,12 @@ const styles = StyleSheet.create({
     },
     add:{
       width:100,
-      backgroundColor:"blue",
-      borderRadius: 10
+      height:30,
+      backgroundColor:"#5F73F2",
+      borderRadius: 10,
+      flexDirection:"row",
+      justifyContent:"space-around",
+      alignItems:"center",
+      marginTop:10,
     }
 })

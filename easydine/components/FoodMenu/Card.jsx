@@ -8,7 +8,7 @@ export default function Card(props) {
         <View style={styles.info}>
             <Text>{props.name}</Text>
             <Text>Rate: {props.rate}</Text>
-            <View style = {styles.add}><Button title="add">Add</Button></View>
+            <View style = {styles.add}><Button title="add" onPress={()=>props.addItem({name:props.name,rate:props.rate})}>Add</Button></View>
         </View>
         <Image 
         style={styles.image}

@@ -6,9 +6,12 @@ import Test from "./components/Test";
 import FoodMenu from './components/FoodMenu/FoodMenu';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Login from './components/Login'
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { FIREBASE_AUTH } from './config';
+
+
+const UserContext = createContext();
 
 const Stack = createNativeStackNavigator();
 
@@ -31,11 +34,11 @@ export default function App() {
     });
   }, []);
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName='Login'>
-        {user ? (<Stack.Screen name='Inside' component={ InsideLayout } options={{headerShown: false}}/>) : (<Stack.Screen name='Login' component={ Login } options={{headerShown: false}}/>)}
-      </Stack.Navigator>
-    </NavigationContainer>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName='Login'>
+         {user ? (<Stack.Screen name='Inside' component={ InsideLayout } options={{headerShown: false}}/>) : (<Stack.Screen name='Login' component={ Login } options={{headerShown: false}}/>)}
+        </Stack.Navigator>
+      </NavigationContainer>
   );
 }
 

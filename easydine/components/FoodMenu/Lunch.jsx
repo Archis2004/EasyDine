@@ -9,7 +9,7 @@ import FetchLV from '../../src/Lunch/FetchLV';
 import FetchLD from '../../src/Lunch/FetchLD';
 import FetchLNV from '../../src/Lunch/FetchLNV';
 
-export default function Breakfast() {
+export default function Lunch() {
     
     const navigation = useNavigation();
 
@@ -21,22 +21,39 @@ export default function Breakfast() {
             if (temp[i].name ==item.name){
                 temp[i].quantity += 1;
                 setCart(temp);
+                console.log(cart)
                 return;
             }
         }
         item.quantity = 1;
         temp.push(item);
         setCart(temp);
-        console.log()
+        console.log(cart)
+    }
+    function removeItem(item){
+        let temp=cart;
+        for(let i=0;i<temp.length;i++){
+            if (temp[i].name ==item.name){
+                temp[i].quantity -= 1;
+                if(temp[i].quantity<=0){
+                    temp.splice(i,1);
+                };
+                setCart(temp);
+                console.log(cart)
+                return;
+            }
+        }
     }
     const LV = FetchLV();
     const LNV = FetchLNV();
     const LD = FetchLD();
-    const Data = LV.concat(LNV, LD);
 
+    const dataArray=[LV,LNV,LD];
+    const [Data,setData] = useState(LV.concat(LD, LNV));
+    let filterStatus = [false,false,false];
     const renderItem = ({ item, index }) => (
-        <Pressable style={[styles.itemContainer, index === Data.length - 1 && styles.lastItem]}>
-            <Card name={item.name} rate={item.rate} image={item.image} addItem={ addItem } />
+        <Pressable style={[styles.itemContainer, (index === Data.length - 1) && styles.lastItem]}>
+            <Card name={item.name} rate={item.rate} image={item.image} addItem={addItem} removeItem={removeItem}/>
         </Pressable>
     );
 
@@ -46,9 +63,26 @@ export default function Breakfast() {
         );
     };
 
+    const filter=(i)=>{
+        let out=[];
+        let noFilter = true;
+        filterStatus[i]= (!filterStatus[i]);
+        for(let i=0;i<3;i++){
+            if (filterStatus[i]==true){
+                out = out.concat(dataArray[i]);
+                nofilter=false;
+            }
+        };
+        if (noFilter==true){
+            out=out.concat(LD, LNV, LV);
+        }
+        setData(out);
+        console.log(filterStatus)
+    }
+
     return (
         <View style={styles.container}> 
-            <SelectType />
+            <SelectType filter={filter}/>
             <View style={styles.flatListContainer}>
                 <FlatList
                     data={Data}

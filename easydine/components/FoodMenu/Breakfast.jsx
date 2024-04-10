@@ -47,7 +47,7 @@ export default function Breakfast() {
     const BV = FetchBV();
     const BNV = FetchBNV();
     const BB = FetchBB();
-    console.log(BV);
+    
     const dataArray=[BV,BNV,BB];
     const [Data,setData] = useState(BV.concat(BB,BNV));
     let filterStatus = [false,false,false];

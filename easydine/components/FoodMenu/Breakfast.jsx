@@ -21,13 +21,14 @@ export default function Breakfast() {
             if (temp[i].name ==item.name){
                 temp[i].quantity += 1;
                 setCart(temp);
+                console.log(cart)
                 return;
             }
         }
         item.quantity = 1;
         temp.push(item);
         setCart(temp);
-        console.log()
+        console.log(cart)
     }
     const BV = FetchBV();
     const BNV = FetchBNV();
@@ -36,13 +37,13 @@ export default function Breakfast() {
 
     const renderItem = ({ item, index }) => (
         <Pressable style={[styles.itemContainer, index === Data.length - 1 && styles.lastItem]}>
-            <Card name={item.name} rate={item.rate} image={item.image} />
+            <Card name={item.name} rate={item.rate} image={item.image} addItem={ addItem } />
         </Pressable>
     );
 
     const handlePress = () => {
         return (
-            navigation.navigate('View Cart')
+            navigation.navigate('View Cart', {cart})
         );
     };
 

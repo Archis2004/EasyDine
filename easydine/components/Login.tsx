@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { FIREBASE_AUTH } from '../config';
 import 'firebase/auth'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+import ReactNativeAsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = () => {
     
@@ -11,11 +12,20 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const auth = FIREBASE_AUTH;
 
+    const storeRegNo = async (reg) => {
+        try {
+            await ReactNativeAsyncStorage.setItem('regno', reg);
+        } catch (error) {
+            console.log('Error storing regno:', error);
+        }
+    }
+
     const signIn = async () => { 
         setLoading(true);
         try {
             const response = await signInWithEmailAndPassword(auth, regno.concat('@gmail.com'), password);
             console.log(response);
+            await storeRegNo(regno);
         } catch (error: any) { 
             console.log(error);
             alert('Sign in failed: ' + error.message)
@@ -29,6 +39,7 @@ const Login = () => {
         try {
             const response = await createUserWithEmailAndPassword(auth, regno.concat('@gmail.com'), password);
             console.log(response);
+            await storeRegNo(regno);
             alert("Check your email!");
         } catch (error: any) { 
             console.log(error);

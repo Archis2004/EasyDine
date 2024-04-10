@@ -19,7 +19,7 @@ export default function Navbar() {
       <Drawer.Screen name="Profile" component={Profile}/>
       <Drawer.Screen name="Credits" component={Credits}/>
       <Drawer.Screen name="Past Orders" component={Orders} />
-      <Drawer.Screen name="View Cart" component={ViewCart}/>
+      <Drawer.Screen name="View Cart" component={ViewCart} />
       <Drawer.Screen name="Settings" component={Settings} />
       </Drawer.Navigator>
       

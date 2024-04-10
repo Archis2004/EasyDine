@@ -1,19 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import { FlatList, StyleSheet, Text, View, Button } from 'react-native';
-import React from 'react';
-import { NavigatorProp } from '@react-navigation/native'
+import React, { useState, useEffect } from 'react'
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { FIREBASE_AUTH } from '../config';
 
 export default function Profile() {
+  const [user, setUser] = useState(null);
+  
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, (user) => {
+      setUser(user);
+      if (user) {
+        console.log(user.email.slice(0,-10).toUpperCase());
+      }
+    });
 
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        {/* <Button onPress={() => navigation.navigate('details')} title='Open Details' /> */}
-        <Button onPress={() => FIREBASE_AUTH.signOut()} title='LogOut' />
-      </View>
-    );
-  }
+    return () => unsubscribe();
+  }, []);
 
-const styles = StyleSheet.create({
-
-})
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {user && <Text>Reg No: {user.email.slice(0,-10).toUpperCase()}</Text>}
+      <Button onPress={() => FIREBASE_AUTH.signOut()} title='LogOut' />
+    </View>
+  );
+}
